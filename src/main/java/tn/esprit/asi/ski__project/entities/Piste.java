@@ -1,5 +1,6 @@
 package tn.esprit.asi.ski__project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class Piste {
     private Couleur couleur;
     private int longeur;
     private int pente;
+    @JsonIgnore
     @ManyToMany(mappedBy = "pisteList")
     private List<Skieur> skieurList;
 

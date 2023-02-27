@@ -1,5 +1,6 @@
 package tn.esprit.asi.ski__project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,7 @@ public class Skieur {
     private String ville;
     @OneToMany(mappedBy = "skieur")
     private List<Inscription> inscriptionList;
+
 
     @ManyToMany
     private List<Piste> pisteList;
