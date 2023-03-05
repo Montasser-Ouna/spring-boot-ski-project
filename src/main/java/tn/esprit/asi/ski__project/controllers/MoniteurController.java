@@ -38,4 +38,10 @@ public class MoniteurController {
     @DeleteMapping ("/{id}")
     void remove(@PathVariable long id)
     {iMoniteurService.remove(id);}
+    @PostMapping("/{numMoniteur}/assign-course/{numCours}")
+    public Moniteur addInstructorAndAssignToCourse(@PathVariable Long numMoniteur,
+                                                   @PathVariable Long numCours) {
+        return iMoniteurService.addInstructorAndAssignToCourse(numMoniteur, numCours);
+
+    }
 }

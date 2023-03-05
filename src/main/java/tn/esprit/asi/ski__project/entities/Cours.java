@@ -30,4 +30,6 @@ public class Cours {
     private List<Inscription> inscriptionList;
 
 
+    public void setInstructor(Moniteur moniteur) {
+    }
 }

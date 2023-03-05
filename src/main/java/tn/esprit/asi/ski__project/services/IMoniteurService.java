@@ -15,4 +15,8 @@ public interface IMoniteurService {
     Moniteur getById(long id);
 
     void remove(long id);
+
+    Moniteur addInstructorAndAssignToCourse(Long numMoniteur, Long numCours);
+
+
 }

@@ -12,4 +12,8 @@ public interface ISkieurService {
     void remove(long id);
 
     Skieur assignSkierToPiste(Long numSkieur, Long numPiste);
+
+
+
+
 }

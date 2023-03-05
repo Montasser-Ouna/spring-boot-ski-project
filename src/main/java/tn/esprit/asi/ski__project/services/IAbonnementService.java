@@ -3,6 +3,7 @@ package tn.esprit.asi.ski__project.services;
 import org.springframework.stereotype.Service;
 import tn.esprit.asi.ski__project.entities.Abonnement;
 import tn.esprit.asi.ski__project.entities.Cours;
+import tn.esprit.asi.ski__project.entities.Skieur;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface IAbonnementService {
     Abonnement getById(long id);
 
     void remove(long id);
+
+    Skieur assignSkieurtoAbonnement(long numSkieur, long numAbon);
 }
