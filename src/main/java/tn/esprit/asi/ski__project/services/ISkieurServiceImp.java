@@ -7,9 +7,12 @@ import tn.esprit.asi.ski__project.entities.Abonnement;
 import tn.esprit.asi.ski__project.entities.Piste;
 import tn.esprit.asi.ski__project.entities.Skieur;
 
+import tn.esprit.asi.ski__project.entities.TypeAbonnement;
+import tn.esprit.asi.ski__project.repositories.AbonnementRepository;
 import tn.esprit.asi.ski__project.repositories.PisteRepository;
 import tn.esprit.asi.ski__project.repositories.SkieurRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ISkieurServiceImp implements ISkieurService {
@@ -17,7 +20,8 @@ public class ISkieurServiceImp implements ISkieurService {
     private SkieurRepository skieurRepository;
     @Autowired
     private PisteRepository pisteRepository;
-
+    @Autowired
+    private AbonnementRepository abonnementRepository;
     @Override
     public void add(Skieur s) {
         skieurRepository.save(s);
@@ -62,7 +66,26 @@ public class ISkieurServiceImp implements ISkieurService {
         return skieurRepository.save(skieur);
 
     }
+    @Override
+    public Skieur assignSkieurtoAbonnement(long numSkieur, long numAbon) {
+        Skieur skieur = skieurRepository.findById(numSkieur).orElse(null);
+        Abonnement abonnement = abonnementRepository.findById(numAbon).orElse(null);
+        return  skieurRepository.save(skieur);
+    }
+
+    @Override
+    public List<Skieur> retrieveSkiersBySubscriptionType(TypeAbonnement typeAbonnement) {
+       /* List<Skieur> list = new ArrayList<>();
+        for (Skieur s:getAll()){
+            if(s.getAbonnement().getTybeAbonnement().equals(typeAbonnement)) {
+                list.add(s);
+            }
+        }
+        return list;
+    }*/
 
 
+        return skieurRepository.findByAbonnementTybeAbonnement(typeAbonnement);
 
+    }
 }

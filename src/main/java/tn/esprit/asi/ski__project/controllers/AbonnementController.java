@@ -43,9 +43,5 @@ public class AbonnementController {
         void remove(@PathVariable long id)
         {iAbonnementService.remove(id);}
 
-        @PutMapping("/{numSkieur}/{numAbon}")
-        public Skieur assignSkieurtoAbonnement(@PathVariable long numSkieur, @PathVariable long numAbon)
-        {
-                return iAbonnementService.assignSkieurtoAbonnement(numSkieur,numAbon);
-        }
+
 }

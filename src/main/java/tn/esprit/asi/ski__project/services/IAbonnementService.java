@@ -19,5 +19,5 @@ public interface IAbonnementService {
 
     void remove(long id);
 
-    Skieur assignSkieurtoAbonnement(long numSkieur, long numAbon);
+
 }
