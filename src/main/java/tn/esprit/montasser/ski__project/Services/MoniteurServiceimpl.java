@@ -1,0 +1,79 @@
+package tn.esprit.montasser.ski__project.Services;
+
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+import tn.esprit.montasser.ski__project.Entities.Cours;
+import tn.esprit.montasser.ski__project.Entities.Inscription;
+import tn.esprit.montasser.ski__project.Entities.Moniteur;
+import tn.esprit.montasser.ski__project.Entities.Support;
+import tn.esprit.montasser.ski__project.Repositories.CoursRepo;
+import tn.esprit.montasser.ski__project.Repositories.MoniteurRepo;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@AllArgsConstructor
+@Service
+public class MoniteurServiceimpl implements IMoniteurService{
+    private MoniteurRepo moniteurRepo;
+    private CoursRepo coursRepo;
+    @Override
+    public List<Moniteur> retrieveAllMoniteurs() {
+        return moniteurRepo.findAll();
+    }
+
+    @Override
+    public Moniteur addMoniteur(Moniteur moniteur) {
+        return moniteurRepo.save(moniteur);
+    }
+
+    @Override
+    public Moniteur updateMoniteur(Moniteur moniteur) {
+        return moniteurRepo.save(moniteur);
+    }
+
+    @Override
+    public Moniteur retrieveMoniteur(Long numMoniteur) {
+        return moniteurRepo.findById(numMoniteur).orElse(null);
+    }
+
+    @Override
+    public void remove(Long id) {
+        moniteurRepo.deleteById(id);
+
+    }
+
+    @Override
+    public Moniteur addInstructorAndAssignToCourse(Moniteur moniteur, Long numCourse) {
+
+        Cours course = coursRepo.findById(numCourse).orElse(null);
+        Set<Cours> cours = new HashSet<>();
+        cours.add(course);
+        moniteur.setCours(cours);
+        Assert.notNull(course, "course not found");
+
+        return moniteurRepo.save(moniteur);
+    }
+
+    @Override
+    public List<Integer> numWeeksCourseOfInstructorBySupport(Long numInstructor, Support support) {
+        List<Integer> numSemaines = new ArrayList<>();
+       Moniteur m = moniteurRepo.findByNumMonitorAndCoursSupport(numInstructor,support);
+        System.out.println(m);
+
+        for (Cours c : m.getCours()){
+
+            for (Inscription ins : c.getInscriptions()){
+                numSemaines.add(ins.getNumSemaine());
+            }
+        }
+        return numSemaines;
+    }
+
+
+
+
+}
